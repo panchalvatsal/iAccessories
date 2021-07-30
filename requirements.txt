@@ -20,7 +20,7 @@ pytz
 six
 SQLAlchemy
 vine
-Werkzeug
+werkzeug
 wkhtmltopdf
 WTForms
 flask-msearch
