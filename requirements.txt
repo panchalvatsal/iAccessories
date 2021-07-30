@@ -26,4 +26,4 @@ WTForms
 flask-msearch
 Flask-Migrate
 gunicorn
-python ==3.7.3 
+python 
