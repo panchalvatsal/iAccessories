@@ -1,0 +1,81 @@
+<div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #4F4846;">
+  <div class="container">
+    <a class="navbar-brand active" href="/">iAccessories</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/">All Products</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                Brands
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for brand in brands %}
+                <li><a class="dropdown-item" href="{{url_for('get_brand', id = brand.id)}}">{{brand.name}}</a></li>
+                  {% endfor %}
+              </ul>
+            </li>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                 aria-expanded="false">
+               Categories
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for category in categories %}
+                <li><a class="dropdown-item" href="{{url_for('get_category', id = category.id)}}">{{category.name}}</a></li>
+                  {% endfor %}
+              </ul>
+            </li>
+              <li class="nav-item">
+	                <a class="nav-link right" href="{{url_for('contact')}}">Contact Us</a>
+            </li>
+
+
+            {% if current_user.is_authenticated %}
+
+              <li class="nav-item top-nav">
+                  <a href="{{url_for('customer_logout')}}" class="nav-link" style="float:right;">{{current_user.name}}</a>
+              </li>
+
+                 <li class="nav-item top-nav" style="float:right;">
+                   <a href="{{url_for('customer_logout')}}" class="nav-link" style="text-align:right;">Logout</a>
+                 </li>
+                 {% else %}
+
+                 <li class="nav-item top-nav">
+                  <a href="{{url_for('customer_register')}}" class="nav-link" style="float:right;">Sign in</a>
+                </li>
+
+                 <li class="nav-item top-nav">
+                  <a href="{{url_for('customerLogin')}}" class="nav-link" style="float:right;">Login</a>
+                </li>
+
+                {% endif %}
+              <ul class="nav navbar-nav navbar-right right">
+                  <li class="nav-item top-nav">
+                  <a class="nav-link " href="{{url_for('getCart')}}" tabindex="-1" style="text-align:right;">
+                      Cart({{session['Shoppingcart']|length}})</a>
+                </li>
+              </ul>
+
+                <form class="d-flex form-inline my-2 my-lg-0" action="{{url_for('result')}}">
+            <input class="form-control me-sm-2 right" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-success my-2 my-sm-0" style="text-align:right" type="submit">Search</button>
+          </form>
+<ul>
+     <li class="nav-item top-nav">
+                  <a href="{{url_for('login')}}" class="nav-link" style="float:right;">Admin Login</a>
+              </li>
+</ul>
+            </ul>
+        </div>
+  </div>
+</nav>
+</div>

@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container">
+    <div class="row">
+        {% if brand %}
+        {% for b in brand %}
+        <div class="col-md-3 mt-3">
+            <div class="card  h-100">
+                <img src="{{url_for('static', filename='images/' + b.image_1)}}" alt="{{b.name}}" class="card-img-top" height="250px">
+                <div class="card-body">
+                    <h5 class="text-center">{{b.name}}</h5>
+                    <p class="text-center">Price: ${{b.price}}
+                    {% if b.discount>0 %}
+                    ({{b.discount}}% off)</p>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <a href="{{url_for('single_page', id=b.id)}}" class="btn btn-sm btn-primary" style="float:left">Details</a>
+                    <form action="{{url_for('AddCart')}}" method="POST" >
+                        <input type="hidden" name="product_id" value="{{b.id}}">
+                        <button type="submit" class="btn btn-sm btn-warning" style="float:right">Add to Cart</button>
+                        <input type="hidden" name="quantity" value="1" min="1" max="{{b.stock}}">
+                        {% set colors = b.colors.split(',') %}
+                        <select name="colors" id="colors" style="visibility:hidden;">
+                            {% for color in colors %}
+                            {% set col = color.split(':') %}
+                            <option value="{{col[0]}}">{{col[0]|capitalize}}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% elif get_cat_prod %}
+        {% for c in get_cat_prod %}
+        <div class="col-md-3 mt-3">
+            <div class="card"  h-100>
+                <img src="{{url_for('static', filename='images/' + c.image_1)}}" alt="{{c.name}}" class="card-img-top" height="250px">
+                <div class="card-body">
+                    <h5 class="text-center">{{c.name}}</h5>
+                    <p class="text-center">Price:  €{{c.price}}
+                    {% if c.discount>0 %}
+                    ({{c.discount}}% off)</p>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <a href="{{url_for('single_page', id=c.id)}}" class="btn btn-sm btn-primary" style="float:left">Details</a>
+                    <form action="{{url_for('AddCart')}}" method="POST" >
+                        <input type="hidden" name="product_id" value="{{c.id}}">
+                        <button type="submit" class="btn btn-sm btn-warning" style="float:right">Add to Cart</button>
+                        <input type="hidden" name="quantity" value="1" min="1" max="{{c.stock}}">
+                        {% set colors = c.colors.split(',') %}
+                        <select name="colors" id="colors" style="visibility:hidden;">
+                            {% for color in colors %}
+                            {% set col = color.split(':') %}
+                            <option value="{{col[0]}}">{{col[0]|capitalize}}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% else %}
+        {% for product in products.items %}
+        <div class="col-md-3 mt-3">
+            <div class="card  h-100">
+                <img src="{{url_for('static', filename='images/' + product.image_1)}}" alt="{{product.name}}" class="card-img-top" height="250px">
+                <div class="card-body">
+                    <h5 class="text-center">{{product.name}}</h5>
+                    <p class="text-center">Price: €{{product.price}}
+                    {% if product.discount>0 %}
+                    ({{product.discount}}% off)</p>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <a href="{{url_for('single_page', id=product.id)}}" class="btn btn-sm btn-primary" style="float:left">Details</a>
+                    <form action="{{url_for('AddCart')}}" method="POST" >
+                        <input type="hidden" name="product_id" value="{{product.id}}">
+                        <button type="submit" class="btn btn-sm btn-warning" style="float:right">Add to Cart</button>
+                        <input type="hidden" name="quantity" value="1" min="1" max="{{product.stock}}">
+                        {% set colors = product.colors.split(',') %}
+                        <select name="colors" id="colors" style="visibility:hidden;">
+                            {% for color in colors %}
+                            {% set col = color.split(':') %}
+                            <option value="{{col[0]}}">{{col[0]|capitalize}}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}

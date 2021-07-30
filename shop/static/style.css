@@ -1,0 +1,79 @@
+ .card {
+ min-height: 200px;
+padding-left: 20px;
+padding-right: 20px;
+box-shadow: 0 0px 20px 0 rgba(0,0,0,0.2);
+background-color: #E8CEBF;
+transition: 0.3s;}
+}
+
+body {
+background-color: #E98580;
+}
+
+.panel-footer {
+      background-color:#4F4846 ;
+      color: #FFFFFF;
+}
+#navbar{
+    background-color:#4F4846;
+    color:#FFFFFF
+}
+.nav-item, top-nav {
+  float: right;
+}
+
+.table-striped>tbody>tr:nth-child(odd) {
+    background-color: #E98580;
+}
+.table-striped>tbody>tr:nth-child(even) {
+    background-color: #F5B7B1;
+
+}
+.table-hover tbody tr:hover {
+    background-color: rgb(0,0,0,0.6);
+    color: #FFFFFF;
+}
+.button
+{
+    border: 1px solid;
+    color: #ffffff;
+    transition: 0.4s ease;
+}
+.button:hover{
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #E98580;
+}
+.btn
+{
+    border: 1px solid #6b5b95;
+    color: #ffffff;
+    transition: 0.4s ease;
+    background-color: rgb(0,0,0,0.6);
+
+}
+.btn:hover{
+    border: 1px solid #6b5b95;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #E98580;
+}
+.contact{
+     font-size: 105%;
+     color: #E98580
+}
+.contact-h2{
+    font-size: 500%;
+    margin-top: 15%;
+    color: #E98580;
+}
+#contact-form{
+    font-size: 105%;
+    color: #E98580
+
+}
+.fas{
+    color: #E98580;
+}
+
